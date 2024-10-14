@@ -1,0 +1,8 @@
+{% if is_correct %}
+    <h3>Правильно!</h3>
+{% else %}
+    <h3>Неправильно!</h3>
+{% endif %}
+<button hx-get="/" hx-target="#quiz-container" hx-swap="innerHTML">
+    Следующий вопрос
+</button>

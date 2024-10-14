@@ -1,0 +1,20 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+<div id="quiz-container">
+    <h2>{{ question.text }}</h2>
+    <ul>
+        {% for choice in question.choice_set.all %}
+        <li>
+            <form hx-post="{% url 'check_answer' %}"
+                  hx-target="#quiz-container"
+                  hx-swap="innerHTML">
+                {% csrf_token %}
+                <input type="hidden" name="choice" value="{{ choice.id }}">
+                <button type="submit">{{ choice.text }}</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
