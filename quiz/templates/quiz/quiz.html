@@ -4,9 +4,10 @@
 <div id="quiz-container">
     <h2>{{ question.text }}</h2>
     <ul>
-        {% for choice in question.choice_set.all %}
+        {% for choice in question.choices.all %}
         <li>
-            <form hx-post="{% url 'check_answer' %}"
+            <form hx-post="{% url 'check_answer' category.id %}"
+                  hx-include="[name='choice']"
                   hx-target="#quiz-container"
                   hx-swap="innerHTML">
                 {% csrf_token %}

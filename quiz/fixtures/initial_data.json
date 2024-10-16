@@ -1,0 +1,104 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 1,
+        "fields": {
+            "name": "Технологии"
+        }
+    },
+    {
+        "model": "quiz.category",
+        "pk": 2,
+        "fields": {
+            "name": "История"
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 1,
+        "fields": {
+            "text": "Какой язык программирования используется для разработки с Django?",
+            "category": 1
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 1,
+        "fields": {
+            "question": 1,
+            "text": "Java",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 2,
+        "fields": {
+            "question": 1,
+            "text": "Python",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 3,
+        "fields": {
+            "question": 1,
+            "text": "C++",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 4,
+        "fields": {
+            "question": 1,
+            "text": "JavaScript",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 2,
+        "fields": {
+            "text": "Когда произошла Великая Французская революция?",
+            "category": 2
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 5,
+        "fields": {
+            "question": 2,
+            "text": "1789 год",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 6,
+        "fields": {
+            "question": 2,
+            "text": "1917 год",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 7,
+        "fields": {
+            "question": 2,
+            "text": "1812 год",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 8,
+        "fields": {
+            "question": 2,
+            "text": "1776 год",
+            "is_correct": false
+        }
+    }
+]
