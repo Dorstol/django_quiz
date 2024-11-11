@@ -1,9 +1,13 @@
 {% extends 'quiz/base.html' %}
+{% load static %}
 
 {% block content %}
+<div id="quiz-end-container" class="container mt-5">
     <h2>Квиз окончен</h2>
     <p>Ваш итоговый счёт: {{ score }}</p>
     <p>Количество неправильных ответов: {{ wrong_answers }}</p>
     <p>Всего вопросов: {{ total_questions }}</p>
-    <a href="{% url 'category_list' %}">Вернуться к выбору категории</a>
+
+    {% include 'quiz/partials/quiz_end_form.html' %}
+</div>
 {% endblock %}

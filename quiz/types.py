@@ -1,4 +1,7 @@
 from typing import TypedDict, List, Optional
+
+from django import forms
+
 from .models import Category, Question
 
 
@@ -31,3 +34,4 @@ class QuizEndContext(TypedDict):
     score: int
     wrong_answers: int
     total_questions: int
+    form: forms.Form

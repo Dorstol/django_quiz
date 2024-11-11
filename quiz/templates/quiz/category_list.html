@@ -1,12 +1,21 @@
 {% extends 'quiz/base.html' %}
+{% load static %}
 
 {% block content %}
-<h2>Выберите категорию</h2>
-<ul>
-    {% for category in categories %}
-    <li>
-        <a href="{% url 'quiz_view' category.id %}">{{ category.name }}</a>
-    </li>
-    {% endfor %}
-</ul>
+<div class="container mt-5">
+    <h2 class="mb-4">Выберите категорию</h2>
+    <div class="list-group">
+        {% for category in categories %}
+        <a href="{% url 'quiz_view' category.id %}" class="list-group-item list-group-item-action">
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </div>
+    <button class="btn btn-primary mt-4" hx-get="{% url 'leaderboard_partial' %}"
+            hx-target="#leaderboard-container"
+            hx-swap="innerHTML">
+        Показать таблицу рейтинга
+    </button>
+    <div id="leaderboard-container" class="mt-4"></div>
+</div>
 {% endblock %}

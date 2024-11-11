@@ -44,9 +44,9 @@ class Category(models.Model):
 
 class QuizResult(models.Model):
     name: models.CharField = models.CharField(max_length=100)
-    email: models.EmailField = models.EmailField()
+    email: models.EmailField = models.EmailField(unique=True)
     score: int = models.IntegerField()
-    data_taken: models.DateTimeField = models.DateTimeField(auto_now_add=True)
+    data_taken: models.DateTimeField = models.DateTimeField(auto_now=True)
     category: models.ForeignKey = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,

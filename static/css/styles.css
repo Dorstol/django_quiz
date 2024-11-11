@@ -1,0 +1,16 @@
+body {
+    padding-top: 60px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.list-group-item-action {
+    cursor: pointer;
+}
+
+#quiz-container, #quiz-end-container {
+    max-width: 600px;
+    margin: 0 auto;
+}

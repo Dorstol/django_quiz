@@ -1,39 +1,32 @@
 {% extends 'quiz/base.html' %}
+{% load static %}
 
 {% block content %}
-<div id="quiz-container">
+<div id="quiz-container" class="container mt-5">
     {% if previous_is_correct is not None %}
-        {% if previous_is_correct %}
-            <h3 style="color: green;">Правильно!</h3>
-        {% else %}
-            <h3 style="color: red;">Неправильно!</h3>
-        {% endif %}
+        <div id="result-message" class="alert {% if previous_is_correct %}alert-success{% else %}alert-danger{% endif %}">
+            {% if previous_is_correct %}
+                Правильно!
+            {% else %}
+                Неправильно!
+            {% endif %}
+        </div>
     {% endif %}
     <h2>{{ question.text }}</h2>
-    <p>Счет: {{ score }}</p>
+    <p>Счёт: {{ score }}</p>
     <p>Неправильных ответов: {{ wrong_answers }} из 3</p>
-    <ul>
+    <div class="list-group">
         {% for choice in question.choices.all %}
-        <li>
-            <form hx-post="{% url 'check_answer' category.id %}"
-                  hx-include="[name='choice']"
-                  hx-target="#quiz-container"
-                  hx-swap="innerHTML">
-                {% csrf_token %}
-                <input type="hidden" name="choice" value="{{ choice.id }}">
-                <button type="submit">{{ choice.text }}</button>
-            </form>
-        </li>
+        <form hx-post="{% url 'check_answer' category.id %}"
+              hx-target="#quiz-container"
+              hx-swap="outerHTML">
+            {% csrf_token %}
+            <input type="hidden" name="choice" value="{{ choice.id }}">
+            <button type="submit" class="list-group-item list-group-item-action">
+                {{ choice.text }}
+            </button>
+        </form>
         {% endfor %}
-    </ul>
+    </div>
 </div>
-
-<script>
-    setTimeout(function() {
-        var resultMessage = document.getElementById('result-message');
-        if (resultMessage) {
-            resultMessage.style.display = 'none';
-        }
-    }, 2000);
-</script>
 {% endblock %}

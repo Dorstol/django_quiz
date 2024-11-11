@@ -1,10 +1,13 @@
+from datetime import timedelta
 from typing import Optional
 
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.utils import timezone
 
-from .models import Question, Choice, Category
+from .forms import QuizResultForm
+from .models import Question, Choice, Category, QuizResult
 from .types import (
     CategoryListContext,
     QuizContext,
@@ -29,7 +32,7 @@ def category_list(request: HttpRequest) -> HttpResponse:
 
 def quiz_view(request: HttpRequest, category_id: int) -> HttpResponse:
     category: Category = get_object_or_404(Category, id=category_id)
-
+    request.session["category_id"] = category_id
     # Инициализация счёта и неправильных ответов
     if "score" not in request.session:
         request.session["score"] = 0
@@ -119,13 +122,85 @@ def quiz_end(request: HttpRequest) -> HttpResponse:
     score: int = request.session.get("score", 0)
     wrong_answers: int = request.session.get("wrong_answers", 0)
     total_questions: int = len(request.session.get("asked_questions", []))
+    category_id: Optional[int] = request.session.get("category_id")
 
-    # Очистка сессии
-    request.session.flush()
+    category: Optional[Category] = None
+    if category_id:
+        category = get_object_or_404(
+            Category,
+            id=category_id,
+        )
 
-    context: QuizEndContext = {
-        "score": score,
-        "wrong_answers": wrong_answers,
-        "total_questions": total_questions,
-    }
-    return render(request, "quiz/quiz_end.html", context)
+    if request.method == "POST":
+        form = QuizResultForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            name = form.cleaned_data["name"]
+            try:
+                quiz_result = QuizResult.objects.get(email=email)
+
+                time_since_last_update = timezone.now() - quiz_result.data_taken
+                if time_since_last_update < timedelta(hours=1):
+                    # Если прошло меньше часа, не обновляем и возвращаем сообщение
+                    form.add_error(
+                        None, "Вы можете обновлять результат не чаще, чем раз в час."
+                    )
+                    context = {
+                        "form": form,
+                        "score": score,
+                        "wrong_answers": wrong_answers,
+                        "total_questions": total_questions,
+                    }
+                    return render(request, "quiz/partials/quiz_end_form.html", context)
+                # Обновляем имя если оно изменилось
+                if quiz_result.name != name:
+                    quiz_result.name = name
+                # Обновляем счет, если новый выше
+                if score > quiz_result.score:
+                    quiz_result.score = score
+
+                quiz_result.data_taken = timezone.now()
+                quiz_result.save()
+
+            except QuizResult.DoesNotExist:
+                # Если записи не существует, создаем новую
+                quiz_result.save(commit=False)
+                quiz_result.score = score
+                quiz_result.category = category
+                quiz_result.save()
+
+            request.session.flush()
+            top_results = QuizResult.objects.order_by("-score", "-data_taken")[:10]
+            context = {"top_results": top_results}
+            return render(request, "quiz/partials/leaderboard_partial.html", context)
+        else:
+            context = {
+                "form": form,
+                "score": score,
+                "wrong_answers": wrong_answers,
+                "total_questions": total_questions,
+            }
+            return render(request, "quiz/partials/quiz_end_form.html", context)
+    else:
+        form = QuizResultForm()
+        context: QuizEndContext = {
+            "score": score,
+            "wrong_answers": wrong_answers,
+            "total_questions": total_questions,
+            "form": form,
+        }
+        return render(request, "quiz/quiz_end.html", context)
+
+
+def leaderboard_partial(request: HttpRequest) -> HttpResponse:
+    top_results = QuizResult.objects.order_by("-score", "data_taken")
+    from django.db.models import Max
+
+    top_results = (
+        top_results.values("email", "name")
+        .annotate(max_score=Max("score"), data_taken=Max("data_taken"))
+        .order_by("-max_score", "data_taken")[:10]
+    )
+
+    context = {"top_results": top_results}
+    return render(request, "quiz/partials/leaderboard_partial.html", context=context)
