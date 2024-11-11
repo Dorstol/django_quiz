@@ -1,9 +1,0 @@
-{% if is_correct %}
-    <h3>Правильно!</h3>
-{% else %}
-    <h3>Неправильно!</h3>
-{% endif %}
-<button hx-get="{% url 'quiz_view' category.id %}" hx-target="#quiz-container" hx-swap="innerHTML">
-    Следующий вопрос
-</button>
-<a href="{% url 'category_list' %}">Вернуться к выбору категории</a>

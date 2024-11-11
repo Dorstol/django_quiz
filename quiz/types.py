@@ -1,21 +1,33 @@
-from typing import TypedDict, List
-
+from typing import TypedDict, List, Optional
 from .models import Category, Question
+
+
+class BaseContext(TypedDict):
+    category: Category
 
 
 class CategoryListContext(TypedDict):
     categories: List[Category]
 
 
-class QuizContex(TypedDict):
-    category: Category
+class QuizContext(BaseContext):
     question: Question
+    score: int
+    wrong_answers: int
+    previous_is_correct: Optional[bool]
 
 
-class CheckAnswerContext(TypedDict):
+class CheckAnswerContext(BaseContext):
     is_correct: bool
-    category: Category
+    score: int
+    wrong_answers: int
 
 
-class NoQuestionContext(TypedDict):
-    category: Category
+class NoQuestionsContext(BaseContext):
+    pass
+
+
+class QuizEndContext(TypedDict):
+    score: int
+    wrong_answers: int
+    total_questions: int

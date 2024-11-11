@@ -9,7 +9,7 @@ class ChoiceInline(admin.TabularInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ChoiceInline]
-    list_display = ['text', 'category']
+    list_display = ["text", "category"]
 
 
 admin.site.register(Question, QuestionAdmin)

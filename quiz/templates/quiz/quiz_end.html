@@ -1,0 +1,9 @@
+{% extends 'quiz/base.html' %}
+
+{% block content %}
+    <h2>Квиз окончен</h2>
+    <p>Ваш итоговый счёт: {{ score }}</p>
+    <p>Количество неправильных ответов: {{ wrong_answers }}</p>
+    <p>Всего вопросов: {{ total_questions }}</p>
+    <a href="{% url 'category_list' %}">Вернуться к выбору категории</a>
+{% endblock %}
