@@ -3,21 +3,35 @@
         "model": "quiz.category",
         "pk": 1,
         "fields": {
-            "name": "Технологии"
+            "name": "Общие знания"
         }
     },
     {
         "model": "quiz.category",
         "pk": 2,
         "fields": {
+            "name": "Наука"
+        }
+    },
+    {
+        "model": "quiz.category",
+        "pk": 3,
+        "fields": {
             "name": "История"
+        }
+    },
+    {
+        "model": "quiz.category",
+        "pk": 4,
+        "fields": {
+            "name": "География"
         }
     },
     {
         "model": "quiz.question",
         "pk": 1,
         "fields": {
-            "text": "Какой язык программирования используется для разработки с Django?",
+            "text": "Какова столица Франции?",
             "category": 1
         }
     },
@@ -26,8 +40,8 @@
         "pk": 1,
         "fields": {
             "question": 1,
-            "text": "Java",
-            "is_correct": false
+            "text": "Париж",
+            "is_correct": true
         }
     },
     {
@@ -35,8 +49,8 @@
         "pk": 2,
         "fields": {
             "question": 1,
-            "text": "Python",
-            "is_correct": true
+            "text": "Берлин",
+            "is_correct": false
         }
     },
     {
@@ -44,7 +58,7 @@
         "pk": 3,
         "fields": {
             "question": 1,
-            "text": "C++",
+            "text": "Рим",
             "is_correct": false
         }
     },
@@ -53,7 +67,7 @@
         "pk": 4,
         "fields": {
             "question": 1,
-            "text": "JavaScript",
+            "text": "Мадрид",
             "is_correct": false
         }
     },
@@ -61,7 +75,7 @@
         "model": "quiz.question",
         "pk": 2,
         "fields": {
-            "text": "Когда произошла Великая Французская революция?",
+            "text": "Кто разработал теорию относительности?",
             "category": 2
         }
     },
@@ -70,8 +84,8 @@
         "pk": 5,
         "fields": {
             "question": 2,
-            "text": "1789 год",
-            "is_correct": true
+            "text": "Исаак Ньютон",
+            "is_correct": false
         }
     },
     {
@@ -79,8 +93,8 @@
         "pk": 6,
         "fields": {
             "question": 2,
-            "text": "1917 год",
-            "is_correct": false
+            "text": "Альберт Эйнштейн",
+            "is_correct": true
         }
     },
     {
@@ -88,7 +102,7 @@
         "pk": 7,
         "fields": {
             "question": 2,
-            "text": "1812 год",
+            "text": "Галилео Галилей",
             "is_correct": false
         }
     },
@@ -97,7 +111,359 @@
         "pk": 8,
         "fields": {
             "question": 2,
-            "text": "1776 год",
+            "text": "Мария Кюри",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 3,
+        "fields": {
+            "text": "В каком году закончилась Вторая мировая война?",
+            "category": 3
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 9,
+        "fields": {
+            "question": 3,
+            "text": "1945",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 10,
+        "fields": {
+            "question": 3,
+            "text": "1939",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 11,
+        "fields": {
+            "question": 3,
+            "text": "1918",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 12,
+        "fields": {
+            "question": 3,
+            "text": "1965",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 4,
+        "fields": {
+            "text": "Какой океан является самым большим на Земле?",
+            "category": 4
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 13,
+        "fields": {
+            "question": 4,
+            "text": "Атлантический океан",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 14,
+        "fields": {
+            "question": 4,
+            "text": "Индийский океан",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 15,
+        "fields": {
+            "question": 4,
+            "text": "Тихий океан",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 16,
+        "fields": {
+            "question": 4,
+            "text": "Северный Ледовитый океан",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 5,
+        "fields": {
+            "text": "Какой газ растения поглощают из атмосферы?",
+            "category": 2
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 17,
+        "fields": {
+            "question": 5,
+            "text": "Кислород",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 18,
+        "fields": {
+            "question": 5,
+            "text": "Углекислый газ",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 19,
+        "fields": {
+            "question": 5,
+            "text": "Азот",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 20,
+        "fields": {
+            "question": 5,
+            "text": "Водород",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 6,
+        "fields": {
+            "text": "Кто нарисовал Мону Лизу?",
+            "category": 1
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 21,
+        "fields": {
+            "question": 6,
+            "text": "Винсент Ван Гог",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 22,
+        "fields": {
+            "question": 6,
+            "text": "Пабло Пикассо",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 23,
+        "fields": {
+            "question": 6,
+            "text": "Леонардо да Винчи",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 24,
+        "fields": {
+            "question": 6,
+            "text": "Микеланджело",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 7,
+        "fields": {
+            "text": "Какая планета известна как Красная планета?",
+            "category": 2
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 25,
+        "fields": {
+            "question": 7,
+            "text": "Венера",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 26,
+        "fields": {
+            "question": 7,
+            "text": "Марс",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 27,
+        "fields": {
+            "question": 7,
+            "text": "Юпитер",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 28,
+        "fields": {
+            "question": 7,
+            "text": "Сатурн",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 8,
+        "fields": {
+            "text": "Кто был первым президентом Соединенных Штатов?",
+            "category": 3
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 29,
+        "fields": {
+            "question": 8,
+            "text": "Авраам Линкольн",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 30,
+        "fields": {
+            "question": 8,
+            "text": "Томас Джефферсон",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 31,
+        "fields": {
+            "question": 8,
+            "text": "Джордж Вашингтон",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 32,
+        "fields": {
+            "question": 8,
+            "text": "Джон Адамс",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 9,
+        "fields": {
+            "text": "Какая самая большая пустыня в мире?",
+            "category": 4
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 33,
+        "fields": {
+            "question": 9,
+            "text": "Сахара",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 34,
+        "fields": {
+            "question": 9,
+            "text": "Аравийская пустыня",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 35,
+        "fields": {
+            "question": 9,
+            "text": "Антарктическая пустыня",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 36,
+        "fields": {
+            "question": 9,
+            "text": "Гоби",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.question",
+        "pk": 10,
+        "fields": {
+            "text": "Какая страна подарила Статую Свободы США?",
+            "category": 1
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 37,
+        "fields": {
+            "question": 10,
+            "text": "Великобритания",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 38,
+        "fields": {
+            "question": 10,
+            "text": "Франция",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 39,
+        "fields": {
+            "question": 10,
+            "text": "Испания",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 40,
+        "fields": {
+            "question": 10,
+            "text": "Германия",
             "is_correct": false
         }
     }

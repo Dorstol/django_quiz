@@ -11,7 +11,6 @@ from .models import Question, Choice, Category, QuizResult
 from .types import (
     CategoryListContext,
     QuizContext,
-    QuizEndContext,
 )
 
 
@@ -119,77 +118,76 @@ def check_answer(request: HttpRequest, category_id: int) -> HttpResponse:
 
 
 def quiz_end(request: HttpRequest) -> HttpResponse:
-    score: int = request.session.get("score", 0)
-    wrong_answers: int = request.session.get("wrong_answers", 0)
-    total_questions: int = len(request.session.get("asked_questions", []))
-    category_id: Optional[int] = request.session.get("category_id")
+    score = request.session.get('score', 0)
+    wrong_answers = request.session.get('wrong_answers', 0)
+    total_questions = len(request.session.get('asked_questions', []))
+    category_id = request.session.get('category_id')
 
-    category: Optional[Category] = None
+    # Получаем категорию
+    category = None
     if category_id:
-        category = get_object_or_404(
-            Category,
-            id=category_id,
-        )
+        category = get_object_or_404(Category, id=category_id)
 
-    if request.method == "POST":
+    if request.method == 'POST':
         form = QuizResultForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data["email"]
-            name = form.cleaned_data["name"]
-            try:
-                quiz_result = QuizResult.objects.get(email=email)
+            email = form.cleaned_data['email']
+            name = form.cleaned_data['name']
 
+            try:
+                # Проверяем, существует ли уже запись с таким email
+                quiz_result = QuizResult.objects.get(email=email)
+                # Проверяем, прошло ли достаточно времени с последнего обновления
                 time_since_last_update = timezone.now() - quiz_result.data_taken
                 if time_since_last_update < timedelta(hours=1):
                     # Если прошло меньше часа, не обновляем и возвращаем сообщение
-                    form.add_error(
-                        None, "Вы можете обновлять результат не чаще, чем раз в час."
-                    )
+                    form.add_error(None, 'Вы можете обновлять результат не чаще, чем раз в час.')
                     context = {
-                        "form": form,
-                        "score": score,
-                        "wrong_answers": wrong_answers,
-                        "total_questions": total_questions,
+                        'form': form,
+                        'score': score,
+                        'wrong_answers': wrong_answers,
+                        'total_questions': total_questions,
                     }
-                    return render(request, "quiz/partials/quiz_end_form.html", context)
-                # Обновляем имя если оно изменилось
+                    return render(request, 'quiz/partials/quiz_end_form.html', context)
+                # Обновляем имя, если оно изменилось
                 if quiz_result.name != name:
                     quiz_result.name = name
-                # Обновляем счет, если новый выше
+                # Обновляем результат, если новый результат выше
                 if score > quiz_result.score:
                     quiz_result.score = score
-
-                quiz_result.data_taken = timezone.now()
+                quiz_result.date_taken = timezone.now()
+                quiz_result.category = category
                 quiz_result.save()
-
             except QuizResult.DoesNotExist:
-                # Если записи не существует, создаем новую
-                quiz_result.save(commit=False)
+                # Если запись не существует, создаем новую
+                quiz_result = form.save(commit=False)
                 quiz_result.score = score
                 quiz_result.category = category
                 quiz_result.save()
-
+            # Очистка сессии
             request.session.flush()
-            top_results = QuizResult.objects.order_by("-score", "-data_taken")[:10]
-            context = {"top_results": top_results}
-            return render(request, "quiz/partials/leaderboard_partial.html", context)
+            # Возвращаем частичный шаблон с таблицей рейтинга
+            top_results = QuizResult.objects.order_by('-score', 'data_taken')[:10]
+            context = {'top_results': top_results}
+            return render(request, 'quiz/partials/leaderboard_partial.html', context)
         else:
+            # Если форма не валидна, возвращаем частичный шаблон с формой и ошибками
             context = {
-                "form": form,
-                "score": score,
-                "wrong_answers": wrong_answers,
-                "total_questions": total_questions,
+                'form': form,
+                'score': score,
+                'wrong_answers': wrong_answers,
+                'total_questions': total_questions,
             }
-            return render(request, "quiz/partials/quiz_end_form.html", context)
+            return render(request, 'quiz/partials/quiz_end_form.html', context)
     else:
         form = QuizResultForm()
-        context: QuizEndContext = {
-            "score": score,
-            "wrong_answers": wrong_answers,
-            "total_questions": total_questions,
-            "form": form,
+        context = {
+            'score': score,
+            'wrong_answers': wrong_answers,
+            'total_questions': total_questions,
+            'form': form,
         }
-        return render(request, "quiz/quiz_end.html", context)
+        return render(request, 'quiz/quiz_end.html', context)
 
 
 def leaderboard_partial(request: HttpRequest) -> HttpResponse:
