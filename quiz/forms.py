@@ -21,7 +21,7 @@ class QuizResultForm(forms.ModelForm):
         Переопределяем метод validate_unique, чтобы исключить проверку уникальности поля email.
         """
         exclude = self._get_validation_exclusions()
-        exclude.add('email')  # Исключаем поле 'email' из проверки уникальности
+        exclude.add('email')
         try:
             self.instance.validate_unique(exclude=exclude)
         except forms.ValidationError as e:

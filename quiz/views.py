@@ -1,6 +1,7 @@
 from datetime import timedelta
 from typing import Optional
 
+from django.db.models import Max
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
@@ -8,10 +9,7 @@ from django.utils import timezone
 
 from .forms import QuizResultForm
 from .models import Question, Choice, Category, QuizResult
-from .types import (
-    CategoryListContext,
-    QuizContext,
-)
+from .types import CategoryListContext, QuizContext
 
 
 def category_list(request: HttpRequest) -> HttpResponse:
@@ -19,43 +17,48 @@ def category_list(request: HttpRequest) -> HttpResponse:
     context: CategoryListContext = {
         "categories": categories,
     }
-    return render(
-        request,
-        "quiz/category_list.html",
-        context,
-    )
+    return render(request, "quiz/category_list.html", context)
 
 
-# quiz/views.py
+def init_quiz_session(request: HttpRequest, category_id: int) -> None:
+    """Инициализирует сессию для прохождения квиза."""
+    request.session["category_id"] = category_id
+    request.session["score"] = 0
+    request.session["wrong_answers"] = 0
+    request.session["asked_questions"] = []
+
+
+def get_next_question(category: Category, asked_questions: list[int]) -> Optional[Question]:
+    """Возвращает следующий случайный вопрос из категории, который ещё не задавался."""
+    remaining_questions = category.questions.exclude(id__in=asked_questions)
+    return remaining_questions.order_by("?").first()
 
 
 def quiz_view(request: HttpRequest, category_id: int) -> HttpResponse:
-    category: Category = get_object_or_404(Category, id=category_id)
-    request.session["category_id"] = category_id
-    # Инициализация счёта и неправильных ответов
-    if "score" not in request.session:
-        request.session["score"] = 0
-    if "wrong_answers" not in request.session:
-        request.session["wrong_answers"] = 0
-    if "asked_questions" not in request.session:
-        request.session["asked_questions"] = []
+    category = get_object_or_404(Category, id=category_id)
 
-    asked_questions = request.session["asked_questions"]
+    # Если квиз запускается первый раз или пользователь начал заново,
+    # инициализируем сессию
+    if "category_id" not in request.session or request.session.get("category_id") != category_id:
+        init_quiz_session(request, category_id)
 
-    # Проверка типа asked_questions
+    asked_questions = request.session.get("asked_questions", [])
     if not isinstance(asked_questions, list):
-        asked_questions = [asked_questions]
+        asked_questions = []
         request.session["asked_questions"] = asked_questions
 
-    # Получаем следующий вопрос, который еще не задавался
-    remaining_questions = category.questions.exclude(id__in=asked_questions)
-    question: Optional[Question] = remaining_questions.order_by("?").first()
-
-    if not question:
-        # Если вопросов не осталось, заканчиваем квиз
+    # Проверяем, есть ли в категории вопросы
+    if not category.questions.exists():
+        # Нет вопросов - сразу конец квиза
         return redirect(reverse("quiz_end"))
 
-    # Добавляем текущий вопрос в список заданных
+    # Получаем следующий вопрос
+    question = get_next_question(category, asked_questions)
+    if not question:
+        # Если вопросов не осталось
+        return redirect(reverse("quiz_end"))
+
+    # Добавляем текущий вопрос в список уже заданных
     asked_questions.append(question.id)
     request.session["asked_questions"] = asked_questions
 
@@ -70,135 +73,127 @@ def quiz_view(request: HttpRequest, category_id: int) -> HttpResponse:
 
 
 def check_answer(request: HttpRequest, category_id: int) -> HttpResponse:
-    choice_id: Optional[str] = request.POST.get("choice")
+    choice_id = request.POST.get("choice")
     if not choice_id:
         return redirect(reverse("quiz_view", args=[category_id]))
 
-    choice: Choice = get_object_or_404(Choice, id=choice_id)
-    is_correct: bool = choice.is_correct
-    category: Category = get_object_or_404(Category, id=category_id)
+    choice = get_object_or_404(Choice, id=choice_id)
+    category = get_object_or_404(Category, id=category_id)
 
-    # Обновление счёта и неправильных ответов
-    if is_correct:
-        request.session["score"] += 1
+    # Обновление счёта
+    if choice.is_correct:
+        request.session["score"] = request.session.get("score", 0) + 1
     else:
-        request.session["wrong_answers"] += 1
+        request.session["wrong_answers"] = request.session.get("wrong_answers", 0) + 1
 
-    # Проверка, достиг ли пользователь 3 неправильных ответов
+    # Проверка предела неправильных ответов
     if request.session["wrong_answers"] >= 3:
         return redirect(reverse("quiz_end"))
 
-    # Получаем список заданных вопросов
     asked_questions = request.session.get("asked_questions", [])
     if not isinstance(asked_questions, list):
-        asked_questions = [asked_questions]
+        asked_questions = []
         request.session["asked_questions"] = asked_questions
 
-    # Получаем следующий вопрос, исключая уже заданные
-    remaining_questions = category.questions.exclude(id__in=asked_questions)
-    question: Optional[Question] = remaining_questions.order_by("?").first()
-
+    # Получаем следующий вопрос
+    question = get_next_question(category, asked_questions)
     if not question:
-        # Если вопросов не осталось, заканчиваем квиз
         return redirect(reverse("quiz_end"))
 
-    # Добавляем текущий вопрос в список заданных
     asked_questions.append(question.id)
     request.session["asked_questions"] = asked_questions
 
-    # Передаем информацию о результате предыдущего ответа
     context: QuizContext = {
         "question": question,
         "category": category,
-        "score": request.session["score"],
-        "wrong_answers": request.session["wrong_answers"],
-        "previous_is_correct": is_correct,
+        "score": request.session.get("score", 0),
+        "wrong_answers": request.session.get("wrong_answers", 0),
+        "previous_is_correct": choice.is_correct,
     }
     return render(request, "quiz/quiz.html", context)
 
 
 def quiz_end(request: HttpRequest) -> HttpResponse:
-    score = request.session.get('score', 0)
-    wrong_answers = request.session.get('wrong_answers', 0)
-    total_questions = len(request.session.get('asked_questions', []))
-    category_id = request.session.get('category_id')
+    score = request.session.get("score", 0)
+    wrong_answers = request.session.get("wrong_answers", 0)
+    asked_questions = request.session.get("asked_questions", [])
+    total_questions = len(asked_questions)
+    category_id = request.session.get("category_id")
 
-    # Получаем категорию
     category = None
     if category_id:
         category = get_object_or_404(Category, id=category_id)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         form = QuizResultForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            name = form.cleaned_data['name']
+            email = form.cleaned_data["email"]
+            name = form.cleaned_data["name"]
 
             try:
-                # Проверяем, существует ли уже запись с таким email
                 quiz_result = QuizResult.objects.get(email=email)
-                # Проверяем, прошло ли достаточно времени с последнего обновления
                 time_since_last_update = timezone.now() - quiz_result.data_taken
                 if time_since_last_update < timedelta(hours=1):
-                    # Если прошло меньше часа, не обновляем и возвращаем сообщение
-                    form.add_error(None, 'Вы можете обновлять результат не чаще, чем раз в час.')
+                    # Менее часа прошло с последнего обновления
+                    form.add_error(None, "Вы можете обновлять результат не чаще, чем раз в час.")
                     context = {
-                        'form': form,
-                        'score': score,
-                        'wrong_answers': wrong_answers,
-                        'total_questions': total_questions,
+                        "form": form,
+                        "score": score,
+                        "wrong_answers": wrong_answers,
+                        "total_questions": total_questions,
                     }
-                    return render(request, 'quiz/partials/quiz_end_form.html', context)
-                # Обновляем имя, если оно изменилось
+                    return render(request, "quiz/partials/quiz_end_form.html", context)
+                # Обновляем данные
                 if quiz_result.name != name:
                     quiz_result.name = name
-                # Обновляем результат, если новый результат выше
                 if score > quiz_result.score:
                     quiz_result.score = score
                 quiz_result.date_taken = timezone.now()
                 quiz_result.category = category
                 quiz_result.save()
             except QuizResult.DoesNotExist:
-                # Если запись не существует, создаем новую
+                # Создаём новый результат
                 quiz_result = form.save(commit=False)
                 quiz_result.score = score
                 quiz_result.category = category
                 quiz_result.save()
-            # Очистка сессии
+
+            # Очистка сессии после сохранения результата
             request.session.flush()
-            # Возвращаем частичный шаблон с таблицей рейтинга
-            top_results = QuizResult.objects.order_by('-score', 'data_taken')[:10]
-            context = {'top_results': top_results}
-            return render(request, 'quiz/partials/leaderboard_partial.html', context)
+
+            # Показываем таблицу рейтинга
+            top_results = (
+                QuizResult.objects
+                .values("email", "name")
+                .annotate(max_score=Max("score"), data_taken=Max("data_taken"))
+                .order_by("-max_score", "data_taken")[:10]
+            )
+            return render(request, "quiz/partials/leaderboard_partial.html", {"top_results": top_results})
         else:
-            # Если форма не валидна, возвращаем частичный шаблон с формой и ошибками
+            # Ошибки валидации формы
             context = {
-                'form': form,
-                'score': score,
-                'wrong_answers': wrong_answers,
-                'total_questions': total_questions,
+                "form": form,
+                "score": score,
+                "wrong_answers": wrong_answers,
+                "total_questions": total_questions,
             }
-            return render(request, 'quiz/partials/quiz_end_form.html', context)
+            return render(request, "quiz/partials/quiz_end_form.html", context)
     else:
         form = QuizResultForm()
         context = {
-            'score': score,
-            'wrong_answers': wrong_answers,
-            'total_questions': total_questions,
-            'form': form,
+            "score": score,
+            "wrong_answers": wrong_answers,
+            "total_questions": total_questions,
+            "form": form,
         }
-        return render(request, 'quiz/quiz_end.html', context)
+        return render(request, "quiz/quiz_end.html", context)
 
 
 def leaderboard_partial(request: HttpRequest) -> HttpResponse:
-    top_results = QuizResult.objects.order_by("-score", "data_taken")
-    from django.db.models import Max
-
     top_results = (
-        top_results.values("email", "name")
+        QuizResult.objects
+        .values("email", "name")
         .annotate(max_score=Max("score"), data_taken=Max("data_taken"))
         .order_by("-max_score", "data_taken")[:10]
     )
-
-    context = {"top_results": top_results}
-    return render(request, "quiz/partials/leaderboard_partial.html", context=context)
+    return render(request, "quiz/partials/leaderboard_partial.html", {"top_results": top_results})
