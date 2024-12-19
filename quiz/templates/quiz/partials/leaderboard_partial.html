@@ -1,26 +1,43 @@
 <div id="quiz-end-container" class="container mt-5">
-    <h2>Таблица рейтинга</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Место</th>
-                <th>Имя</th>
-                <th>Email</th>
-                <th>Очки</th>
-                <th>Дата</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for result in top_results %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td>{{ result.name }}</td>
-                <td>{{ result.email }}</td>
-                <td>{{ result.max_score }}</td>
-                <td>{{ result.data_taken|date:"d.m.Y H:i" }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="{% url 'category_list' %}" class="btn btn-secondary">Вернуться к выбору категории</a>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-4 text-center">Таблица рейтинга</h2>
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Место</th>
+                        <th>Имя</th>
+                        <th>Email</th>
+                        <th>Очки</th>
+                        <th>Дата</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in top_results %}
+                    <tr
+                        {% if forloop.counter == 1 %} class="table-warning" title="Поздравляем! Лучший результат!" {% endif %}
+                        {% if forloop.counter == 2 %} class="table-info" title="Отлично! Второе место" {% endif %}
+                        {% if forloop.counter == 3 %} class="table-light" title="Здорово! Третье место" {% endif %}
+                    >
+                        <td>
+                            {{ forloop.counter }}
+                            {% if forloop.counter == 1 %} 🏆{% endif %}
+                            {% if forloop.counter == 2 %}🥈{% endif %}
+                            {% if forloop.counter == 3 %}🥉{% endif %}
+                        </td>
+                        <td>{{ result.name }}</td>
+                        <td>{{ result.email }}</td>
+                        <td>{{ result.max_score }}</td>
+                        <td>{{ result.data_taken|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="text-center mt-4">
+                <a href="{% url 'category_list' %}" class="btn btn-secondary">Вернуться к выбору категории</a>
+            </div>
+        </div>
+    </div>
 </div>

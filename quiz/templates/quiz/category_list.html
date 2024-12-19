@@ -3,19 +3,35 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="mb-4">Выберите категорию</h2>
-    <div class="list-group">
+    <h2 class="mb-4 text-center">Выберите категорию</h2>
+    <div class="row">
         {% for category in categories %}
-        <a href="{% url 'quiz_view' category.id %}" class="list-group-item list-group-item-action">
-            {{ category.name }}
-        </a>
+        <div class="col-md-3 mb-4">
+            <div class="card h-100 text-center shadow-sm">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title mb-3">{{ category.name }}</h5>
+                    <!-- Todo category description
+                         {% if category.description %}
+                         <p class="card-text">{{ category.description }}</p>
+                         {% endif %}
+                    -->
+                    <a href="{% url 'quiz_view' category.id %}" class="btn btn-primary mt-auto">
+                        Начать
+                    </a>
+                </div>
+            </div>
+        </div>
         {% endfor %}
     </div>
-    <button class="btn btn-primary mt-4" hx-get="{% url 'leaderboard_partial' %}"
-            hx-target="#leaderboard-container"
-            hx-swap="innerHTML">
-        Показать таблицу рейтинга
-    </button>
+
+    <div class="text-center mt-5">
+        <button class="btn btn-outline-primary"
+                hx-get="{% url 'leaderboard_partial' %}"
+                hx-target="#leaderboard-container"
+                hx-swap="innerHTML">
+            Показать таблицу рейтинга
+        </button>
+    </div>
     <div id="leaderboard-container" class="mt-4"></div>
 </div>
 {% endblock %}

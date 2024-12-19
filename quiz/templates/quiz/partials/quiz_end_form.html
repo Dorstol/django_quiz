@@ -1,32 +1,40 @@
-<div id="quiz-end-form">
-    <h3>Введите ваше имя и email, чтобы сохранить результат:</h3>
-    {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-    <form hx-post="{% url 'quiz_end' %}"
-          hx-target="#quiz-end-container"
-          hx-swap="outerHTML">
-        {% csrf_token %}
-        <div class="mb-3">
-            {{ form.name.label_tag }}
-            {{ form.name }}
-            {% if form.name.errors %}
-                <div class="text-danger">
-                    {{ form.name.errors }}
-                </div>
-            {% endif %}
-        </div>
-        <div class="mb-3">
-            {{ form.email.label_tag }}
-            {{ form.email }}
-            {% if form.email.errors %}
-                <div class="text-danger">
-                    {{ form.email.errors }}
-                </div>
-            {% endif %}
-        </div>
-        <button type="submit" class="btn btn-primary">Сохранить результат</button>
-    </form>
+{% load quiz_tags %}
+<div id="quiz-end-form" class="card mt-4 shadow-sm">
+    <div class="card-body">
+        <h3 class="card-title mb-4 text-center">Сохранить результат</h3>
+        <p class="card-text text-center mb-4">Введите ваше имя и email, чтобы мы могли добавить ваши результаты в таблицу лидеров.</p>
+
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        <form hx-post="{% url 'quiz_end' %}"
+              hx-target="#quiz-end-container"
+              hx-swap="innerHTML">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.name.label_tag }}
+                {{ form.name|addclass:"form-control" }}
+                {% if form.name.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.name.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="mb-3">
+                {{ form.email.label_tag }}
+                {{ form.email|addclass:"form-control" }}
+                {% if form.email.errors %}
+                    <div class="text-danger small mt-1">
+                        {{ form.email.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Сохранить результат</button>
+            </div>
+        </form>
+    </div>
 </div>

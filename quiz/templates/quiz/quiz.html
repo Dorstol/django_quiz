@@ -2,31 +2,58 @@
 {% load static %}
 
 {% block content %}
-<div id="quiz-container" class="container mt-5">
+<div class="container mt-5" id="quiz-container">
     {% if previous_is_correct is not None %}
-        <div id="result-message" class="alert {% if previous_is_correct %}alert-success{% else %}alert-danger{% endif %}">
-            {% if previous_is_correct %}
-                Правильно!
-            {% else %}
-                Неправильно!
-            {% endif %}
-        </div>
+    <div id="result-message"
+         class="alert {% if previous_is_correct %}alert-success{% else %}alert-danger{% endif %} fade show mb-4">
+        {% if previous_is_correct %}
+            Правильно!
+        {% else %}
+            Неправильно!
+        {% endif %}
+    </div>
     {% endif %}
-    <h2>{{ question.text }}</h2>
-    <p>Счёт: {{ score }}</p>
-    <p>Неправильных ответов: {{ wrong_answers }} из 3</p>
-    <div class="list-group">
-        {% for choice in question.choices.all %}
-        <form hx-post="{% url 'check_answer' category.id %}"
-              hx-target="#quiz-container"
-              hx-swap="outerHTML">
-            {% csrf_token %}
-            <input type="hidden" name="choice" value="{{ choice.id }}">
-            <button type="submit" class="list-group-item list-group-item-action">
-                {{ choice.text }}
-            </button>
-        </form>
-        {% endfor %}
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-4">{{ question.text }}</h2>
+            <p class="card-text"><strong>Счёт:</strong> {{ score }}</p>
+            <p class="card-text"><strong>Неправильных ответов:</strong> {{ wrong_answers }} из 3</p>
+
+            <!-- Список вариантов ответов -->
+            <div class="list-group">
+                {% for choice in question.choices.all %}
+                <form hx-post="{% url 'check_answer' category.id %}"
+                      hx-target="#quiz-container"
+                      hx-swap="innerHTML"
+                      class="mb-1">
+                    {% csrf_token %}
+                    <input type="hidden" name="choice" value="{{ choice.id }}">
+                    <button type="submit" class="list-group-item list-group-item-action">
+                        {{ choice.text }}
+                    </button>
+                </form>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
+
+<script>
+  // Событие будет срабатывать после обновления содержимого HTMX
+  document.body.addEventListener('htmx:afterSwap', function(e) {
+    let alertBox = document.getElementById('result-message');
+    if (alertBox) {
+      setTimeout(() => {
+        alertBox.classList.remove('show'); // скрывает alert плавно
+        setTimeout(() => {
+          // удаляем элемент полностью
+          if (alertBox.parentNode) {
+            alertBox.parentNode.removeChild(alertBox);
+          }
+        }, 500);
+      }, 2000); // Показываем alert в течение 2 секунд
+    }
+  });
+</script>
 {% endblock %}
