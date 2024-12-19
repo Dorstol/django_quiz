@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 7,
+        "fields": {
+            "name": "Музыка"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 19,
+        "fields": {
+            "text": "Кто считается \"Королём рок-н-ролла\"?",
+            "category": 7
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 73,
+        "fields": {
+            "question": 19,
+            "text": "Элвис Пресли",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 74,
+        "fields": {
+            "question": 19,
+            "text": "Чак Берри",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 75,
+        "fields": {
+            "question": 19,
+            "text": "Литтл Ричард",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 76,
+        "fields": {
+            "question": 19,
+            "text": "Майкл Джексон",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 20,
+        "fields": {
+            "text": "Из какой страны появился музыкальный стиль регги?",
+            "category": 7
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 77,
+        "fields": {
+            "question": 20,
+            "text": "Ямайка",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 78,
+        "fields": {
+            "question": 20,
+            "text": "США",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 79,
+        "fields": {
+            "question": 20,
+            "text": "Бразилия",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 80,
+        "fields": {
+            "question": 20,
+            "text": "Испания",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 21,
+        "fields": {
+            "text": "Кто написал оперу \"Дон Жуан\"?",
+            "category": 7
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 81,
+        "fields": {
+            "question": 21,
+            "text": "Вольфганг Амадей Моцарт",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 82,
+        "fields": {
+            "question": 21,
+            "text": "Джузеппе Верди",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 83,
+        "fields": {
+            "question": 21,
+            "text": "Рихард Вагнер",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 84,
+        "fields": {
+            "question": 21,
+            "text": "Клод Дебюсси",
+            "is_correct": false
+        }
+    }
+]

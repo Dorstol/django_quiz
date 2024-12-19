@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 9,
+        "fields": {
+            "name": "Технологии"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 25,
+        "fields": {
+            "text": "Какая компания разработала первую компьютерную мышь?",
+            "category": 9
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 97,
+        "fields": {
+            "question": 25,
+            "text": "Xerox",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 98,
+        "fields": {
+            "question": 25,
+            "text": "IBM",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 99,
+        "fields": {
+            "question": 25,
+            "text": "Apple",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 100,
+        "fields": {
+            "question": 25,
+            "text": "Microsoft",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 26,
+        "fields": {
+            "text": "Какая компания является разработчиком операционной системы Android?",
+            "category": 9
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 101,
+        "fields": {
+            "question": 26,
+            "text": "Google",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 102,
+        "fields": {
+            "question": 26,
+            "text": "Apple",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 103,
+        "fields": {
+            "question": 26,
+            "text": "Samsung",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 104,
+        "fields": {
+            "question": 26,
+            "text": "Sony",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 27,
+        "fields": {
+            "text": "Какая технология лежит в основе криптовалют?",
+            "category": 9
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 105,
+        "fields": {
+            "question": 27,
+            "text": "Блокчейн",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 106,
+        "fields": {
+            "question": 27,
+            "text": "Искусственный интеллект",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 107,
+        "fields": {
+            "question": 27,
+            "text": "Виртуальная реальность",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 108,
+        "fields": {
+            "question": 27,
+            "text": "Квантовые вычисления",
+            "is_correct": false
+        }
+    }
+]

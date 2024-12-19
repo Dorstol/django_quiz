@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 3,
+        "fields": {
+            "name": "География"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 7,
+        "fields": {
+            "text": "Какая река является самой длинной в мире?",
+            "category": 3
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 25,
+        "fields": {
+            "question": 7,
+            "text": "Нил",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 26,
+        "fields": {
+            "question": 7,
+            "text": "Амазонка",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 27,
+        "fields": {
+            "question": 7,
+            "text": "Янцзы",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 28,
+        "fields": {
+            "question": 7,
+            "text": "Миссисипи",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 8,
+        "fields": {
+            "text": "Самая густонаселённая страна в мире?",
+            "category": 3
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 29,
+        "fields": {
+            "question": 8,
+            "text": "Китай",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 30,
+        "fields": {
+            "question": 8,
+            "text": "Индия",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 31,
+        "fields": {
+            "question": 8,
+            "text": "США",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 32,
+        "fields": {
+            "question": 8,
+            "text": "Индонезия",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 9,
+        "fields": {
+            "text": "В какой стране находится гора Эверест?",
+            "category": 3
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 33,
+        "fields": {
+            "question": 9,
+            "text": "Непал",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 34,
+        "fields": {
+            "question": 9,
+            "text": "Китай",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 35,
+        "fields": {
+            "question": 9,
+            "text": "Индия",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 36,
+        "fields": {
+            "question": 9,
+            "text": "Бутан",
+            "is_correct": false
+        }
+    }
+]

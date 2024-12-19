@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 1,
+        "fields": {
+            "name": "История"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 1,
+        "fields": {
+            "text": "Какое событие часто считается началом Средневековья в Европе?",
+            "category": 1
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 1,
+        "fields": {
+            "question": 1,
+            "text": "Падение Западной Римской империи (476 г.)",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 2,
+        "fields": {
+            "question": 1,
+            "text": "Крестовые походы",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 3,
+        "fields": {
+            "question": 1,
+            "text": "Открытие Америки Колумбом",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 4,
+        "fields": {
+            "question": 1,
+            "text": "Взятие Константинополя османами",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 2,
+        "fields": {
+            "text": "Кто был первым императором Римской империи?",
+            "category": 1
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 5,
+        "fields": {
+            "question": 2,
+            "text": "Октавиан Август",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 6,
+        "fields": {
+            "question": 2,
+            "text": "Юлий Цезарь",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 7,
+        "fields": {
+            "question": 2,
+            "text": "Нерон",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 8,
+        "fields": {
+            "question": 2,
+            "text": "Тиберий",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 3,
+        "fields": {
+            "text": "Какой документ подписал король Англии Иоанн Безземельный в 1215 году?",
+            "category": 1
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 9,
+        "fields": {
+            "question": 3,
+            "text": "Великая хартия вольностей (Magna Carta)",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 10,
+        "fields": {
+            "question": 3,
+            "text": "Билль о правах",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 11,
+        "fields": {
+            "question": 3,
+            "text": "Манифест о свободах",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 12,
+        "fields": {
+            "question": 3,
+            "text": "Декларация независимости",
+            "is_correct": false
+        }
+    }
+]

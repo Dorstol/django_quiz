@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 11,
+        "fields": {
+            "name": "Мода"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 31,
+        "fields": {
+            "text": "Как называют сезонные показы новых коллекций одежды от дизайнеров?",
+            "category": 11
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 121,
+        "fields": {
+            "question": 31,
+            "text": "Неделя моды",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 122,
+        "fields": {
+            "question": 31,
+            "text": "Парад стиля",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 123,
+        "fields": {
+            "question": 31,
+            "text": "Гала-показ",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 124,
+        "fields": {
+            "question": 31,
+            "text": "Фестиваль одежды",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 32,
+        "fields": {
+            "text": "Какая страна считается родиной высокой моды (Haute Couture)?",
+            "category": 11
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 125,
+        "fields": {
+            "question": 32,
+            "text": "Франция",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 126,
+        "fields": {
+            "question": 32,
+            "text": "Италия",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 127,
+        "fields": {
+            "question": 32,
+            "text": "Великобритания",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 128,
+        "fields": {
+            "question": 32,
+            "text": "США",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 33,
+        "fields": {
+            "text": "Как называется известный итальянский дом моды, основанный Гуччио Гуччи?",
+            "category": 11
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 129,
+        "fields": {
+            "question": 33,
+            "text": "Gucci",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 130,
+        "fields": {
+            "question": 33,
+            "text": "Prada",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 131,
+        "fields": {
+            "question": 33,
+            "text": "Armani",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 132,
+        "fields": {
+            "question": 33,
+            "text": "Versace",
+            "is_correct": false
+        }
+    }
+]

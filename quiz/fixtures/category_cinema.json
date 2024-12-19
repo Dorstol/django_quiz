@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 8,
+        "fields": {
+            "name": "Кино"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 22,
+        "fields": {
+            "text": "Кто режиссёр фильма \"Парк Юрского периода\"?",
+            "category": 8
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 85,
+        "fields": {
+            "question": 22,
+            "text": "Стивен Спилберг",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 86,
+        "fields": {
+            "question": 22,
+            "text": "Джеймс Кэмерон",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 87,
+        "fields": {
+            "question": 22,
+            "text": "Мартин Скорсезе",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 88,
+        "fields": {
+            "question": 22,
+            "text": "Фрэнсис Форд Коппола",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 23,
+        "fields": {
+            "text": "Какая серия фильмов известна тем, что в ней есть джедаи и ситхи?",
+            "category": 8
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 89,
+        "fields": {
+            "question": 23,
+            "text": "Звёздные Войны",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 90,
+        "fields": {
+            "question": 23,
+            "text": "Стартрек",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 91,
+        "fields": {
+            "question": 23,
+            "text": "Хроники Нарнии",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 92,
+        "fields": {
+            "question": 23,
+            "text": "Гарри Поттер",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 24,
+        "fields": {
+            "text": "Кто сыграл роль Железного человека в киновселенной Marvel?",
+            "category": 8
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 93,
+        "fields": {
+            "question": 24,
+            "text": "Роберт Дауни-мл.",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 94,
+        "fields": {
+            "question": 24,
+            "text": "Крис Эванс",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 95,
+        "fields": {
+            "question": 24,
+            "text": "Марк Руффало",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 96,
+        "fields": {
+            "question": 24,
+            "text": "Крис Хемсворт",
+            "is_correct": false
+        }
+    }
+]

@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 5,
+        "fields": {
+            "name": "Литература"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 13,
+        "fields": {
+            "text": "Кто написал роман \"Война и мир\"?",
+            "category": 5
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 49,
+        "fields": {
+            "question": 13,
+            "text": "Лев Толстой",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 50,
+        "fields": {
+            "question": 13,
+            "text": "Фёдор Достоевский",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 51,
+        "fields": {
+            "question": 13,
+            "text": "Александр Пушкин",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 52,
+        "fields": {
+            "question": 13,
+            "text": "Иван Тургенев",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 14,
+        "fields": {
+            "text": "Как зовут главного героя романа \"Приключения Тома Сойера\"?",
+            "category": 5
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 53,
+        "fields": {
+            "question": 14,
+            "text": "Том Сойер",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 54,
+        "fields": {
+            "question": 14,
+            "text": "Гекльберри Финн",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 55,
+        "fields": {
+            "question": 14,
+            "text": "Оливер Твист",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 56,
+        "fields": {
+            "question": 14,
+            "text": "Дэвид Копперфильд",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 15,
+        "fields": {
+            "text": "Какой английский драматург написал \"Гамлета\"?",
+            "category": 5
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 57,
+        "fields": {
+            "question": 15,
+            "text": "Уильям Шекспир",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 58,
+        "fields": {
+            "question": 15,
+            "text": "Чарльз Диккенс",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 59,
+        "fields": {
+            "question": 15,
+            "text": "Джон Милтон",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 60,
+        "fields": {
+            "question": 15,
+            "text": "Джордж Байрон",
+            "is_correct": false
+        }
+    }
+]

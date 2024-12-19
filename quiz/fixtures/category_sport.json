@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 6,
+        "fields": {
+            "name": "Спорт"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 16,
+        "fields": {
+            "text": "Какая страна является родиной Олимпийских игр?",
+            "category": 6
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 61,
+        "fields": {
+            "question": 16,
+            "text": "Древняя Греция",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 62,
+        "fields": {
+            "question": 16,
+            "text": "Древний Рим",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 63,
+        "fields": {
+            "question": 16,
+            "text": "Египет",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 64,
+        "fields": {
+            "question": 16,
+            "text": "Китай",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 17,
+        "fields": {
+            "text": "Какой вид спорта называют \"Королевой спорта\"?",
+            "category": 6
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 65,
+        "fields": {
+            "question": 17,
+            "text": "Лёгкая атлетика",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 66,
+        "fields": {
+            "question": 17,
+            "text": "Футбол",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 67,
+        "fields": {
+            "question": 17,
+            "text": "Гимнастика",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 68,
+        "fields": {
+            "question": 17,
+            "text": "Плавание",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 18,
+        "fields": {
+            "text": "Как называется соревнование по велогонкам, считающееся одним из самых престижных?",
+            "category": 6
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 69,
+        "fields": {
+            "question": 18,
+            "text": "Тур де Франс",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 70,
+        "fields": {
+            "question": 18,
+            "text": "Джиро д'Италия",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 71,
+        "fields": {
+            "question": 18,
+            "text": "Вуэльта Испании",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 72,
+        "fields": {
+            "question": 18,
+            "text": "Париж-Рубе",
+            "is_correct": false
+        }
+    }
+]

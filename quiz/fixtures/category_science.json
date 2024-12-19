@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 2,
+        "fields": {
+            "name": "Наука"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 4,
+        "fields": {
+            "text": "Кто открыл закон всемирного тяготения?",
+            "category": 2
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 13,
+        "fields": {
+            "question": 4,
+            "text": "Исаак Ньютон",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 14,
+        "fields": {
+            "question": 4,
+            "text": "Галилео Галилей",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 15,
+        "fields": {
+            "question": 4,
+            "text": "Никола Тесла",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 16,
+        "fields": {
+            "question": 4,
+            "text": "Майкл Фарадей",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 5,
+        "fields": {
+            "text": "Кто считается отцом современной генетики?",
+            "category": 2
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 17,
+        "fields": {
+            "question": 5,
+            "text": "Грегор Мендель",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 18,
+        "fields": {
+            "question": 5,
+            "text": "Чарлз Дарвин",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 19,
+        "fields": {
+            "question": 5,
+            "text": "Луи Пастер",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 20,
+        "fields": {
+            "question": 5,
+            "text": "Розалинд Франклин",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 6,
+        "fields": {
+            "text": "Какая частица не имеет электрического заряда?",
+            "category": 2
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 21,
+        "fields": {
+            "question": 6,
+            "text": "Нейтрон",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 22,
+        "fields": {
+            "question": 6,
+            "text": "Протон",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 23,
+        "fields": {
+            "question": 6,
+            "text": "Электрон",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 24,
+        "fields": {
+            "question": 6,
+            "text": "Позитрон",
+            "is_correct": false
+        }
+    }
+]

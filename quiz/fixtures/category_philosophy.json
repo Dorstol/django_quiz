@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 12,
+        "fields": {
+            "name": "Философия"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 34,
+        "fields": {
+            "text": "Какого античного философа приговорили к смерти за \"растление молодёжи\"?",
+            "category": 12
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 133,
+        "fields": {
+            "question": 34,
+            "text": "Сократ",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 134,
+        "fields": {
+            "question": 34,
+            "text": "Платон",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 135,
+        "fields": {
+            "question": 34,
+            "text": "Аристотель",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 136,
+        "fields": {
+            "question": 34,
+            "text": "Демокрит",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 35,
+        "fields": {
+            "text": "Какой философ ввёл знаменитое изречение \"Cogito, ergo sum\" (\"Мыслю, следовательно, существую\")?",
+            "category": 12
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 137,
+        "fields": {
+            "question": 35,
+            "text": "Рене Декарт",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 138,
+        "fields": {
+            "question": 35,
+            "text": "Фридрих Ницше",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 139,
+        "fields": {
+            "question": 35,
+            "text": "Иммануил Кант",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 140,
+        "fields": {
+            "question": 35,
+            "text": "Жан-Жак Руссо",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 36,
+        "fields": {
+            "text": "Какой философ считается основателем даосизма?",
+            "category": 12
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 141,
+        "fields": {
+            "question": 36,
+            "text": "Лао-цзы",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 142,
+        "fields": {
+            "question": 36,
+            "text": "Конфуций",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 143,
+        "fields": {
+            "question": 36,
+            "text": "Мо-цзы",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 144,
+        "fields": {
+            "question": 36,
+            "text": "Чжуан-цзы",
+            "is_correct": false
+        }
+    }
+]

@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 10,
+        "fields": {
+            "name": "Культура"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 28,
+        "fields": {
+            "text": "Какой праздник в Китае отмечают, запуская бесчисленные фонарики в небо?",
+            "category": 10
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 109,
+        "fields": {
+            "question": 28,
+            "text": "Праздник Фонарей",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 110,
+        "fields": {
+            "question": 28,
+            "text": "Праздник Дракона",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 111,
+        "fields": {
+            "question": 28,
+            "text": "Праздник Весны",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 112,
+        "fields": {
+            "question": 28,
+            "text": "Праздник Луны",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 29,
+        "fields": {
+            "text": "Как называется традиционная японская одежда?",
+            "category": 10
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 113,
+        "fields": {
+            "question": 29,
+            "text": "Кимоно",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 114,
+        "fields": {
+            "question": 29,
+            "text": "Сари",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 115,
+        "fields": {
+            "question": 29,
+            "text": "Ханбок",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 116,
+        "fields": {
+            "question": 29,
+            "text": "Тога",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 30,
+        "fields": {
+            "text": "Как называется индийский фестиваль красок, который празднует приход весны?",
+            "category": 10
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 117,
+        "fields": {
+            "question": 30,
+            "text": "Холи",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 118,
+        "fields": {
+            "question": 30,
+            "text": "Дивали",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 119,
+        "fields": {
+            "question": 30,
+            "text": "Ракша Бандхан",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 120,
+        "fields": {
+            "question": 30,
+            "text": "Онам",
+            "is_correct": false
+        }
+    }
+]

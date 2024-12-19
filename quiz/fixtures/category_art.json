@@ -1,0 +1,144 @@
+[
+    {
+        "model": "quiz.category",
+        "pk": 4,
+        "fields": {
+            "name": "Искусство"
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 10,
+        "fields": {
+            "text": "Кто написал симфонию №9 (\"Из Нового Света\")?",
+            "category": 4
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 37,
+        "fields": {
+            "question": 10,
+            "text": "Антонин Дворжак",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 38,
+        "fields": {
+            "question": 10,
+            "text": "Людвиг ван Бетховен",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 39,
+        "fields": {
+            "question": 10,
+            "text": "Вольфганг Амадей Моцарт",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 40,
+        "fields": {
+            "question": 10,
+            "text": "Йозеф Гайдн",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 11,
+        "fields": {
+            "text": "Какой художник написал картину \"Звёздная ночь\"?",
+            "category": 4
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 41,
+        "fields": {
+            "question": 11,
+            "text": "Винсент Ван Гог",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 42,
+        "fields": {
+            "question": 11,
+            "text": "Клод Моне",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 43,
+        "fields": {
+            "question": 11,
+            "text": "Сальвадор Дали",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 44,
+        "fields": {
+            "question": 11,
+            "text": "Пабло Пикассо",
+            "is_correct": false
+        }
+    },
+
+    {
+        "model": "quiz.question",
+        "pk": 12,
+        "fields": {
+            "text": "Какой вид искусства основан на ритмических движениях тела под музыку?",
+            "category": 4
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 45,
+        "fields": {
+            "question": 12,
+            "text": "Танец",
+            "is_correct": true
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 46,
+        "fields": {
+            "question": 12,
+            "text": "Живопись",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 47,
+        "fields": {
+            "question": 12,
+            "text": "Архитектура",
+            "is_correct": false
+        }
+    },
+    {
+        "model": "quiz.choice",
+        "pk": 48,
+        "fields": {
+            "question": 12,
+            "text": "Скульптура",
+            "is_correct": false
+        }
+    }
+]
