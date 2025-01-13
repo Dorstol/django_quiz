@@ -1,0 +1,9 @@
+{% extends "quiz/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Таблица рейтинга</h2>
+    {% include "quiz/partials/leaderboard_partial.html" %}
+</div>
+{% endblock %}
